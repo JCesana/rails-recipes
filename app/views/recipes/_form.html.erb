@@ -9,4 +9,11 @@
       <% end %>
     </ul>
   <% end %>
+
+  <div class="panel-body">
+    <%= f.input :title, input_html: {class: 'form-control' } %>
+    <%= f.input :description, input_html: {class: 'form-control' } %>
+  </div>
+
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
