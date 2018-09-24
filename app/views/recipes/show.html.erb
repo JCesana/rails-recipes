@@ -1,4 +1,5 @@
 <h1><%= @recipe.title %></h1>
 <p><%= @recipe.description %></p>
 
-<%= link_to "Back", root_path, class: "btn btn-defualt" %>
+<%= link_to "Back", root_path, class: "btn btn-default" %>
+<%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-default" %>
