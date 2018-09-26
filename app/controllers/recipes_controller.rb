@@ -7,6 +7,8 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new 
+    @comment = @recipe.comments
   end
 
   def new
