@@ -9,6 +9,19 @@
         <h1><%= @recipe.title %></h1>
         <p class="description"><%= @recipe.description %></p>
         <p>Submitted by <%= @recipe.user.email %></p>
+
+        <div id="comment_pane">
+          <% @comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment %>
+          <% end %>
+        </div>
+
+
+        <%= form_with model: [@recipe, @comment] do |f| %>
+          <%= f.text_field :body %>
+          <%= f.submit "Comment" %>
+        <% end %>
+
       </div>
     </div>
   </div>
