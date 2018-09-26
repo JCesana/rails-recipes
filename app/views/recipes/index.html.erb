@@ -9,6 +9,9 @@
             <% end %>
           </div>
           <h2><%= link_to recipe.title, recipe %></h2>
+          <p>
+            <%= pluralize(recipe.comments.count, "Comment") %>
+          </p>
         </div>
       </div>
     <% end %>
