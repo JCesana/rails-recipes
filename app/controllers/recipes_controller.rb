@@ -7,8 +7,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new 
-    @comment = @recipe.comments
+    @comment = Comment.new
+    @comments = @recipe.comments.order("created_at DESC")
   end
 
   def new
