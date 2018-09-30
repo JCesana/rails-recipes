@@ -1,3 +1,12 @@
-<div class="nested fields form-inline" style="display:inline">
-  <%= f.input :name, placeholder: 'name of ingredient', label: false %>
+<div class="nested-fields field">
+  <div class="field has-addons">
+    <div class="control">
+      <%= link_to_remove_association f, class: 'button is-info is-light' do %>
+        <i class="fas fa-times"></i>
+      <% end %>
+    </div>
+    <div class="control">
+      <%= f.text_field :name, class: 'input' %>
+    </div>
+  </div>
 </div>

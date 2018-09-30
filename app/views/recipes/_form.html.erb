@@ -1,11 +1,37 @@
-<%= simple_form_for @recipe do |f| %>
+<%= form_for @recipe do |f| %>
   <%= render 'errors' %>
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= f.input :title, input_html: {  class: 'form-control' } %><br /><br />
-        <%= f.input :description, input_html: { class: 'form-control' } %><br /><br />
-        <%= f.file_field :image, as: :file, input_html: { class: 'form-control-file' } %><br />
+        <div class="field">
+          <div class="control">
+            <%= f.text_field :title, class: 'input is-large', placeholder: "Recipe Title" %><br /><br />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= f.text_area :description, class: 'textarea', rows: 4, placeholder: "Recipe description..." %><br /><br />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <div class="file">
+              <label class="file-label">
+                <%= f.file_field :image, class: 'file-input' %>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Upload image…
+                  </span>
+                </span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -14,20 +40,23 @@
     <div class="row">
       <div class="col-md-6">
         <h3>Ingredients</h3>
-        <div id="ingredients">
+        <div id="ingredients-styling">
+          <%= f.fields_for :ingredients do |ingredient| %>
+            <div id="ingredients">
+              <div class="field">
+                <%= render 'ingredient_fields', :f => ingredient %>
+              </div>
+            </div>
+          <% end %>
 
           <div class="links">
-            <%= f.simple_fields_for :recipe_ingredients do |recipe_ingredient| %>
-              <%= render 'recipes_ingredient_fields', f: recipe_ingredient %>
-            <% end %>
-            <%= link_to_add_association "Add an Ingredient", f, :recipe_ingredients%>
+            <%= link_to_add_association 'Add Ingredient', f, :ingredients, class: 'button is-light' %>
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <h3>Directions</h3>
-        <div id="directions">
+        <div id="directions-styling">
           <%= f.simple_fields_for :directions do |direction| %>
             <%= render 'direction_fields', f: direction %>
           <% end %>
@@ -41,5 +70,5 @@
 
   </div>
 
-  <%= f.butron :submit, class: "btn btn-primary", :disable_with => 'Please wait ...' %>
+  <%= f.button "Submit", class: "button is-primary", :disable_with => 'Please wait ...' %>
 <% end %>
