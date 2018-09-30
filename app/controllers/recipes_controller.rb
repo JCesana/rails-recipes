@@ -18,23 +18,21 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
     @recipe = current_user.recipes.build(title: recipe_params[:title])
-    binding.pry
     @recipe.description = recipe_params[:description]
-    binding.pry
 
     recipe_params[:ingredients_attributes].each do |key, value|
-      binding.pry
       @recipe.ingredients << Ingredient.find_or_initialize_by(name: value[:name])
     end
-    binding.pry
 
     recipe_params[:directions_attributes].each do |key, value|
-      binding.pry
       @recipe.directions << Direction.new(step: value[:step])
     end
-    binding.pry
+
+    @recipe.image.attach(recipe_params[:image])
+    
+    clean_up_recipe
+
     if @recipe.save
       redirect_to @recipe, notice: "Successfully created new recipe"
     else
@@ -67,4 +65,18 @@ class RecipesController < ApplicationController
   def find_recipe
     @recipe = Recipe.find(params[:id])
   end
+
+  def clean_up_recipe
+    @recipe.title.strip!
+    @recipe.description.strip!
+
+    @recipe.ingredients.each do |ingredient|
+      ingredient.name.downcase!.strip!
+    end
+
+    @recipe.directions.each do |direction|
+      direction.step.strip!
+    end
+  end
+
 end
