@@ -18,9 +18,23 @@ class RecipesController < ApplicationController
   end
 
   def create
-    raise params.inspect
-    @recipe = current_user.recipes.build(recipe_params)
+    binding.pry
+    @recipe = current_user.recipes.build(title: recipe_params[:title])
+    binding.pry
+    @recipe.description = recipe_params[:description]
+    binding.pry
 
+    recipe_params[:ingredients_attributes].each do |key, value|
+      binding.pry
+      @recipe.ingredients << Ingredient.find_or_initialize_by(name: value[:name])
+    end
+    binding.pry
+
+    recipe_params[:directions_attributes].each do |key, value|
+      binding.pry
+      @recipe.directions << Direction.new(step: value[:step])
+    end
+    binding.pry
     if @recipe.save
       redirect_to @recipe, notice: "Successfully created new recipe"
     else
