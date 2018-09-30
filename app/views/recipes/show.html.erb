@@ -2,7 +2,10 @@
 
   <div id="recipe_top" class="row">
     <div class="col-md-4">
-      <%= image_tag @recipe.medium, class: "recipe_image" %>
+      <figure class="image is-1by1">
+        <%= image_tag @recipe.image %>
+      </figure>
+
     </div>
     <div class="col-md-8">
       <div id="recipe_info">
