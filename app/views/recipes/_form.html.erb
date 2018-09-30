@@ -17,10 +17,10 @@
         <div id="ingredients">
 
           <div class="links">
-            <%= f.simple_fields_for :recipes_ingredients do |recipe_ingredient| %>
+            <%= f.simple_fields_for :recipe_ingredients do |recipe_ingredient| %>
               <%= render 'recipes_ingredient_fields', f: recipe_ingredient %>
             <% end %>
-            <%= link_to_add_association "Add an Ingredient", f, :recipes_ingredients%>
+            <%= link_to_add_association "Add an Ingredient", f, :recipe_ingredients%>
           </div>
         </div>
       </div>
