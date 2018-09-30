@@ -13,9 +13,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = current_user.recipes.build
+    @recipe.ingredients.build
+    @recipe.directions.build
   end
 
   def create
+    raise params.inspect
     @recipe = current_user.recipes.build(recipe_params)
 
     if @recipe.save
@@ -44,7 +47,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :image, ingredients_ids: [:id, :_destroy], directions_attributes: [:id, :step, :_destroy])
+    params.require(:recipe).permit(:title, :description, :image, ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:step, :_destroy])
   end
 
   def find_recipe
