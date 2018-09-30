@@ -1,0 +1,11 @@
+<div class="nested-fields ingredients-recipe-fields">
+  <div class="form-inline">
+    <div class="ingredient_from_list" style="display: inline;">
+      <%= f.association :ingredient, collection: Ingredient.order(:name), prompt: 'Choose an existing ingredient', label: false %>
+    </div>
+    <%= link_to_add_association 'or create a new ingredient', f, :tag, class: 'add-ingredient' %>
+    <%= link_to_remove_association f, class: 'remove-ingredient btn btn-default btn-xs' do %>
+      <div class="glyphicon.glyphicon-remove"></div>
+    <% end %>
+  </div>
+</div>

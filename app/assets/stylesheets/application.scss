@@ -132,18 +132,12 @@
  	}
  }
 
- .form-inline {
- 	margin-top: 15px;
+ .is-invalid {
+   padding: 2px;
+   border-color: red;
+   display: table;
  }
- .form-input {
- 	width: 65% !important;
- 	float: left;
- }
- .form-button {
- 	float: left;
- 	width: 30% !important;
- 	margin-left: 5%;
- }
- .add-button {
- 	margin-top: 25px;
+
+ .invalid-feedback {
+   color: red;
  }

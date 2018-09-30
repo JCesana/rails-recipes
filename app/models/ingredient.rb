@@ -1,4 +1,6 @@
 class Ingredient < ApplicationRecord
-  has_many :recipesingredients
-  has_many :recipes, through: :recipesingredients
+  has_many :recipes_ingredients, inverse_of: :ingredient
+  has_many :recipes, through: :recipes_ingredients
+
+  validates :name, uniqueness: true
 end
