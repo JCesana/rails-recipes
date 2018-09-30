@@ -95,7 +95,7 @@
  	margin-bottom: 50px;
  }
 
- #recipe_info, #ingredients-styling, #directions-styling {
+ #recipe_info, #ingredients, #directions {
  	background: white;
  	@include box-shadow;
  	min-height: 360px;
@@ -121,7 +121,7 @@
  	}
  }
 
- #ingredients-styling, #directions-styling {
+ #ingredients, #directions {
  	margin-bottom: 50px;
  	ul, ol {
  		padding-left: 18px;
