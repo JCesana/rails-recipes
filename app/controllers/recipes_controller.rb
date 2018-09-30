@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :image_present?, only: [:create]
 
   def index
     @recipes = Recipe.all.order("created_at DESC")
@@ -22,7 +23,8 @@ class RecipesController < ApplicationController
     @recipe.description = recipe_params[:description]
 
     recipe_params[:ingredients_attributes].each do |key, value|
-      @recipe.ingredients << Ingredient.find_or_initialize_by(name: value[:name])
+        ingredient_name = clean_up_ingredient_title(value)
+        @recipe.ingredients << Ingredient.find_or_initialize_by(name: ingredient_name)
     end
 
     recipe_params[:directions_attributes].each do |key, value|
@@ -30,7 +32,7 @@ class RecipesController < ApplicationController
     end
 
     @recipe.image.attach(recipe_params[:image])
-    
+
     clean_up_recipe
 
     if @recipe.save
@@ -66,16 +68,25 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  def clean_up_ingredient_title(ingredient_hash)
+    ingredient_name = ingredient_hash[:name]
+    ingredient_name.downcase!
+    ingredient_name.strip!
+    ingredient_name
+  end
+
   def clean_up_recipe
     @recipe.title.strip!
     @recipe.description.strip!
 
-    @recipe.ingredients.each do |ingredient|
-      ingredient.name.downcase!.strip!
-    end
-
     @recipe.directions.each do |direction|
       direction.step.strip!
+    end
+  end
+
+  def image_present?
+    if recipe_params[:image].nil?
+      redirect_to new_recipe_path, alert: "Please upload an image with your recipe."
     end
   end
 
