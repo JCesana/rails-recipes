@@ -17,15 +17,15 @@
           <div class="control">
             <div class="file">
               <label class="file-label">
-                <%= f.file_field :image, class: 'file-input' %>
-                <span class="file-cta">
+                <%= f.file_field :image %>
+                <!-- <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
                   </span>
                   <span class="file-label">
                     Upload image…
                   </span>
-                </span>
+                </span> -->
               </label>
             </div>
 
@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-md-6">
         <h3>Ingredients</h3>
-        <div id="ingredients-styling">
+        <div id="ingredients">
           <%= f.fields_for :ingredients do |ingredient| %>
             <div id="ingredients">
               <div class="field">
@@ -56,7 +56,7 @@
       </div>
       <div class="col-md-6">
         <h3>Directions</h3>
-        <div id="directions-styling">
+        <div id="directions">
           <%= f.simple_fields_for :directions do |direction| %>
             <%= render 'direction_fields', f: direction %>
           <% end %>
