@@ -4,13 +4,14 @@
       <div class="col-md-4">
         <div class="recipe">
           <div class="image_wrapper">
-            <%= link_to recipe do %>
+            <%= link_to recipe_path(recipe) do %>
               <%= image_tag recipe.image %>
             <% end %>
           </div>
           <h2><%= link_to recipe.title, recipe %></h2>
           <p>
             <%= pluralize(recipe.comments.count, "Comment") %>
+
           </p>
         </div>
       </div>
