@@ -35,11 +35,15 @@ gem 'mini_magick', '~> 4.9', '>= 4.9.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'devise', '~> 4.5'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
+gem 'thin', '~> 1.6', '>= 1.6.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
