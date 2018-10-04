@@ -34,8 +34,8 @@
       <div id="ingredients">
         <h2>Ingredients</h2>
         <ul>
-          <% @recipe.ingredients.each do |ingredient| %>
-            <li><%= ingredient.name %></li>
+          <% @recipe.recipe_ingredients.each do |ri| %>
+            <li><%= ri.recipe_line_detail %></li>
           <% end %>
         </ul>
       </div>
