@@ -7,8 +7,11 @@
     </div>
     <div class="control">
       <%= f.text_field :name, class: 'input', placeholder: 'Ingredient Name' %>
-      <%= f.text_field :name, class: 'quantity', placeholder: 'Quantity' %>
-      <%= f.text_field :name, class: 'unit', placeholder: 'Unit' %>
-    </div>
+
+      <div id="recipe_ingredients">
+        <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
+          <%= render 'recipe_ingredients', :f => recipe_ingredient %>
+        <% end %>
+      </div>
   </div>
 </div>
