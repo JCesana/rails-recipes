@@ -6,12 +6,6 @@
       <% end %>
     </div>
     <div class="control">
-      <%= f.text_field :name, class: 'input', placeholder: 'Ingredient Name' %>
-
-      <div id="recipe_ingredients">
-        <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
-          <%= render 'recipe_ingredients', :f => recipe_ingredient %>
-        <% end %>
-      </div>
+      <%= f.collection_select(:id, Ingredient.order(:name), :id, :name, {include_blank: "Select Ingredient"}) %>
   </div>
 </div>
