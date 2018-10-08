@@ -13,28 +13,15 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = current_user.recipes.build
-    @recipe.ingredients.build
-    @recipe.recipe_ingredients.build
-    @recipe.directions.build
+    @recipe = current_user.recipes.new
+
+    5.times { @recipe.recipe_ingredients.build.build_ingredient }
+    5.times { @recipe.directions.build }
   end
 
   def create
-    @recipe = current_user.recipes.build(title: recipe_params[:title])
-    @recipe.description = recipe_params[:description]
-
-    recipe_params[:ingredients_attributes].each do |key, value|
-        ingredient_name = clean_up_ingredient_title(value)
-        @recipe.ingredients << Ingredient.find_or_initialize_by(name: ingredient_name)
-    end
-
-    recipe_params[:directions_attributes].each do |key, value|
-      @recipe.directions << Direction.new(step: value[:step])
-    end
-
-    @recipe.image.attach(recipe_params[:image])
-
-    clean_up_recipe
+    @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
 
     if @recipe.save
       redirect_to @recipe, notice: "Successfully created new recipe"
@@ -64,28 +51,12 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :description, :image,
-      ingredients_attributes: [:id, :name, :_destroy, recipe_ingredients_attributes: [:quantity, :unit, :_destroy] ],
-      directions_attributes: [:step, :_destroy])
+      recipe_ingredients_attributes: [:quantity, :unit, ingredient_attributes: [:name] ],
+      directions_attributes: [:step])
   end
 
   def find_recipe
     @recipe = Recipe.find(params[:id])
-  end
-
-  def clean_up_ingredient_title(ingredient_hash)
-    ingredient_name = ingredient_hash[:name]
-    ingredient_name.downcase!
-    ingredient_name.strip!
-    ingredient_name
-  end
-
-  def clean_up_recipe
-    @recipe.title.strip!
-    @recipe.description.strip!
-
-    @recipe.directions.each do |direction|
-      direction.step.strip!
-    end
   end
 
   def image_present?
