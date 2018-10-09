@@ -2,7 +2,7 @@
 
   <div id="recipe_top" class="row">
     <div class="col-md-4">
-      <figure class="image is-1by1">
+      <figure class="recipe_image image is-1by1">
         <%= image_tag @recipe.image %>
       </figure>
 
@@ -32,7 +32,7 @@
   <div class="row">
     <div class="col-md-6">
       <div id="ingredients">
-        <h2>Ingredients</h2>
+        <p class="title">Ingredients</p>
         <ul>
           <% @recipe.recipe_ingredients.each do |ri| %>
             <li><%= ri.recipe_line_detail %></li>
@@ -42,8 +42,8 @@
     </div>
     <div class="col-md-6">
       <div id="directions">
-        <h2>Directions</h2>
-        <ul>
+        <p class="title">Directions</p>
+        <ol>
           <% @recipe.directions.each do |direction| %>
             <li>
               <%= direction.step %>
