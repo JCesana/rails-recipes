@@ -14,9 +14,8 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = current_user.recipes.new
-
-    5.times { @recipe.recipe_ingredients.build.build_ingredient }
-    5.times { @recipe.directions.build }
+    @recipe.recipe_ingredients.build.build_ingredient
+    @recipe.directions.build
   end
 
   def create
@@ -26,7 +25,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to @recipe, notice: "Successfully created new recipe"
     else
-      flash[:alert] = @recipe.error.full_messages
+      flash[:alert] = @recipe.errors.full_messages
       render 'new'
     end
   end
@@ -51,8 +50,8 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :description, :image,
-      recipe_ingredients_attributes: [:quantity, :unit, ingredient_attributes: [:name] ],
-      directions_attributes: [:step])
+      recipe_ingredients_attributes: [:id, :quantity, :unit, :_destroy, ingredient_attributes: [:id, :name, :_destroy] ],
+      directions_attributes: [:id, :step, :_destroy])
   end
 
   def find_recipe
