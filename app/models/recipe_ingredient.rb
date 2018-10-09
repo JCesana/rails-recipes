@@ -2,7 +2,7 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :ingredient
   belongs_to :recipe
 
-  validates_uniqueness_of :recipe_id, :scope => :ingredient_id
+  accepts_nested_attributes_for :ingredient, :reject_if => :all_blank, :allow_destroy => true
 
   def ingredient_attributes=(ingredient_attributes)
     ingredient_attributes.values.each do |attribute|
