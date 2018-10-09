@@ -30,6 +30,24 @@
  	background: rgb(235, 238, 243);
  }
 
+ input {
+
+ }
+
+ input[placeholder="Qty"]{
+   width: 60px;
+   margin: 7px 3px;
+ }
+
+ input[placeholder="Unit"]{
+   width: 70px;
+   margin: 7px 3px;
+ }
+
+ input[placeholder="Ingredient"]{
+   width: 150px;
+   margin: 7px 3px;
+ }
  .main_content {
  	padding: 0 0 50px 0;
  }
