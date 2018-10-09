@@ -27,46 +27,46 @@
       </div>
     </div>
 
-<div class="panel-body">
 
     <div class="columns">
 
       <div class="column">
-
-        <div id="ingredients">
+        <div id="ingredients-styling">
           <p class="title is-4 has-text-grey-dark">Ingredients</p>
           <p class="subtitle is-small has-text-grey-light">
             Example: 2 cups sugar
           </p>
-          <%= f.fields_for :recipe_ingredients do |ri| %>
-            <%= ri.text_field :quantity, class: "input", placeholder: "Qty", type: "number" %>
-            <%= ri.text_field :unit, class: "input", placeholder: "Unit" %>
-
-            <%= ri.fields_for :ingredient do |i| %>
-              <%= i.text_field :name, class: "input", placeholder: "Ingredient" %><br />
+          <div id="ingredients">
+            <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
+              <div class="field">
+                <%= render 'recipe_ingredient_fields', f: recipe_ingredient %>
+              </div>
             <% end %>
-          <% end %>
+            <%= link_to_add_association 'Add Qty/Unit', f, :recipe_ingredients, class: 'button is-light' %>
+          </div>
         </div>
       </div>
-
       <div class="column">
-
-        <div id="directions">
+        <div id="directions-styling">
           <p class="title is-4 has-text-grey-dark">Directions</p>
-          <%= f.fields_for :directions do |d| %>
-            <%= d.text_area :step, class: "textarea", placeholder: "Directions Step" %><br />
-          <% end %>
+          <div id="directions">
+            <%= f.fields_for :directions do |direction| %>
+              <%= render 'direction_fields', f: direction %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'Add Step', f, :directions, class: 'button is-light' %>
+            </div>
+          </div>
         </div>
       </div>
 
     </div>
 
-  <div class="level is-mobile">
-    <div class="level-item">
-      <%= f.button "Submit", class: "button is-primary is-large", :disable_with => 'Please wait ...' %>
-      &nbsp;&nbsp;
-      <%= link_to "Cancel", root_path, class: "button is-large" %>
+    <div class="level">
+      <div class="level-item">
+        <%= f.button "Submit", class: "button is-primary is-large", :disable_with => 'Please wait ...' %>
+        &nbsp;&nbsp;
+        <%= link_to "Cancel", root_path, class: "button is-large" %>
+      </div>
     </div>
-  </div>
-
 <% end %>
