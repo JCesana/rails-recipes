@@ -1,11 +1,21 @@
 <div class="nested-fields field">
   <div class="field has-addons">
-    <div class="control">
-      <%= link_to_remove_association f, class: 'button is-info is-light' do %>
-        <i class="fas fa-times"></i>
+    <%= link_to_remove_association f, class: 'button is-info is-light' do %>
+      <i class="fas fa-times"></i>
+    <% end %>
+
+    <div class="field">
+      <%= f.text_field :quantity, placeholder: "Qty" %>
+      <%= f.text_field :unit, placeholder: "Unit" %>
+    </div>
+    <div class="ingredient">
+      <%= f.fields_for :ingredient do |ingredient| %>
+        <%= render 'ingredient_fields', f: ingredient %>
       <% end %>
     </div>
-    <div class="control">
-      <%= f.collection_select(:recipe_ingredient, Ingredient.order(:name), :id, :name, {include_blank: "Select Ingredient"}) %>
+    <div class="links">
+      <%= link_to_add_association 'Add Ingredient', f, :ingredient, class: 'button is-light' %>
+    </div>
+
   </div>
 </div>
