@@ -10,4 +10,13 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients, :reject_if => :all_blank, :allow_destroy => true
 
   validates :title, :description, presence: true
+
+  scope :by_ingredient, -> (ingredient) { joins(:ingredients).where("ingredients.name = ?", ingredient) }
+
+  scope :active, -> { order("comments_count DESC")}
+
+  scope :most_ingredients, -> { order("recipe_ingredients_count DESC")}
+
+  scope :least_ingredients, -> { order("recipe_ingredients_count ASC")}
+
 end
