@@ -7,6 +7,26 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all.order("created_at DESC")
   end
 
+  def active
+    @recipes = Recipe.active
+    render action: :index
+  end
+
+  def most_ingredients
+    @recipes = Recipe.most_ingredients
+    render action: :index
+  end
+
+  def least_ingredients
+    @recipes = Recipe.least_ingredients
+    render action: :index
+  end
+
+  def by_ingredient
+    @recipes = Recipe.by_ingredient(params[:ingredient])
+    render action: :index
+  end
+
   def show
     @comment = Comment.new
     @comments = @recipe.comments.order("created_at DESC")
