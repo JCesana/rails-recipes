@@ -1,0 +1,12 @@
+<div class="columns">
+  <div class="by-ingredient column is-half is-offset-one-quarter has-text-centered">
+    <p class="title">
+      Browse by Ingredient
+    </p>
+
+    <% @ingredients.each do |ingredient| %>
+      <span><%= link_to ingredient.name, ingredient_path(ingredient), class: 'button is-large' %></span>&nbsp;
+    <% end %>
+
+  </div>
+</div>
