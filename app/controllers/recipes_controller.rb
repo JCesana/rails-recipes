@@ -12,12 +12,12 @@ class RecipesController < ApplicationController
     render action: :index
   end
 
-  def most_ingredients
+  def hardest
     @recipes = Recipe.most_ingredients
     render action: :index
   end
 
-  def least_ingredients
+  def easiest
     @recipes = Recipe.least_ingredients
     render action: :index
   end
