@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'recipes#index'
 
   get 'recipes/most_active',       to: 'recipes#active'
-  get 'recipes/hardest',  to: 'recipes#most_ingredients'
-  get 'recipes/easiest', to: 'recipes#least_ingredients'
+  get 'recipes/hardest',  to: 'recipes#hardest'
+  get 'recipes/easiest', to: 'recipes#easiest'
 
   resources :recipes do
     resources :comments, only: [:show, :create]
