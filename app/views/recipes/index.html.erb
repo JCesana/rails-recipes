@@ -1,36 +1,5 @@
 
-<div class="level">
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="title is-5 has-text-grey">
-        <%= link_to "Most Ingredients", recipes_most_ingredients_path %>
-      </p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="title is-5 has-text-grey">
-        <%= link_to "Least Ingredients", recipes_least_ingredients_path %>
-      </p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="title is-5 has-text-grey">
-        <%= link_to "Most Comments", recipes_most_active_path %>
-      </p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="title is-5 has-text-grey">
-
-
-      </p>
-    </div>
-  </div>
-</div>
-
+<%= render 'filters' %>
 
 <% @recipes.each_slice(3) do |recipes| %>
   <div class="row">
