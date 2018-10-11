@@ -7,15 +7,10 @@
     <div class="field">
       <%= f.text_field :quantity, placeholder: "Qty" %>
       <%= f.text_field :unit, placeholder: "Unit" %>
+      <%= f.text_field :ingredient_name, placeholder: "Ingredient" %>
     </div>
-    <div class="ingredient">
-      <%= f.fields_for :ingredient do |ingredient| %>
-        <%= render 'ingredient_fields', f: ingredient %>
-      <% end %>
-    </div>
-    <div class="links">
-      <%= link_to_add_association 'Add Ingredient', f, :ingredient, class: 'button is-light' %>
-    </div>
+
+
 
   </div>
 </div>
