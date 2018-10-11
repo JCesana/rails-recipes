@@ -48,6 +48,17 @@
    width: 150px;
    margin: 7px 3px;
  }
+
+ .filter-section {
+   background: white;
+  @include box-shadow;
+  min-height: 50px;
+  border-radius: 5px;
+  padding: 2em 8%;
+  margin-bottom: 50px;
+  line-height: 2.5;
+ }
+
  .main_content {
  	padding: 0 0 50px 0;
  }
