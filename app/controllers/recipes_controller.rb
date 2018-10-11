@@ -22,11 +22,6 @@ class RecipesController < ApplicationController
     render action: :index
   end
 
-  def by_ingredient
-    @recipes = Recipe.by_ingredient(params[:ingredient])
-    render action: :index
-  end
-
   def show
     @comment = Comment.new
     @comments = @recipe.comments.order("created_at DESC")
@@ -41,7 +36,6 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
-
     if @recipe.save
       redirect_to @recipe, notice: "Successfully created new recipe"
     else
@@ -70,7 +64,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :description, :image,
-      recipe_ingredients_attributes: [:id, :quantity, :unit, :_destroy, ingredient_attributes: [:id, :name, :_destroy] ],
+      recipe_ingredients_attributes: [:id, :quantity, :unit, :ingredient_name, :_destroy],
       directions_attributes: [:id, :step, :_destroy])
   end
 
