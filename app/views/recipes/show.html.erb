@@ -1,13 +1,13 @@
 <div class="main_content">
 
-  <div id="recipe_top" class="row">
-    <div class="col-md-4">
+  <div id="recipe_top" class="columns">
+    <div class="column is-one-third">
       <figure class="recipe_image image is-1by1">
         <%= image_tag @recipe.image %>
       </figure>
 
     </div>
-    <div class="col-md-8">
+    <div class="column is-two-thirds">
       <div id="recipe_info">
         <h1><%= @recipe.title %></h1>
         <p class="description"><%= @recipe.description %></p>
@@ -29,9 +29,9 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div id="ingredients">
+  <div class="columns">
+    <div class="column is-half">
+      <div id="ingredients-styling">
         <p class="title">Ingredients</p>
         <ul>
           <% @recipe.recipe_ingredients.each do |ri| %>
@@ -40,8 +40,8 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-6">
-      <div id="directions">
+    <div class="column is-half">
+      <div id="directions-styling">
         <p class="title">Directions</p>
         <ol>
           <% @recipe.directions.each do |direction| %>
