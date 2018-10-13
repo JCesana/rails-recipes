@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = current_user.recipes.new
+    @recipe = Recipe.new
     @recipe.recipe_ingredients.build.build_ingredient
     @recipe.directions.build
   end
@@ -37,10 +37,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
-      redirect_to @recipe, notice: "Successfully created new recipe"
+      flash[:primary] = "Successfully created new recipe"
+      redirect_to @recipe
     else
-      flash[:alert] = @recipe.errors.full_messages
-      render 'new'
+      flash.now[:danger] = @recipe.errors.full_messages
+      render :new
     end
   end
 
@@ -51,13 +52,15 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
+      flash.now[:danger] = @recipe.errors.full_messages
       render 'edit'
     end
   end
 
   def destroy
     @recipe.destroy
-    redirect_to root_path, notice: "Successfully deleted recipe"
+    flash.now[:primary] = "Successfully deleted recipe"
+    redirect_to root_path
   end
 
   private
@@ -74,7 +77,9 @@ class RecipesController < ApplicationController
 
   def image_present?
     if recipe_params[:image].nil?
-      redirect_to new_recipe_path, alert: "Please upload an image with your recipe."
+      flash[:danger] = "Please upload an image with your recipe."
+      @recipe = Recipe.new(recipe_params) #repopulate fields
+      render :new
     end
   end
 
