@@ -1,3 +1,18 @@
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "alert" %>
+  <%= content_tag :div, clean_alert(msg), class: "notification is-#{name}" %>
 <% end %>
+
+<!--
+
+  Bulma alerts:
+    * primary (teal)
+    * link (blue)
+    * info (light blue)
+    * success (green)
+    * warning (yellow)
+    * danger (red)
+
+Reference:
+https://bulma.io/documentation/elements/notification/
+
+ -->
