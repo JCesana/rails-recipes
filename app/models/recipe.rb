@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :directions, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :recipe_ingredients, :reject_if => :all_blank, :allow_destroy => true
 
-  validates :title, :description, presence: true
+  validates :title, :description, :recipe_ingredients, :directions, :image, presence: true
 
   scope :by_ingredient, -> (ingredient) { joins(:ingredients).where("ingredients.name = ?", ingredient) }
 
