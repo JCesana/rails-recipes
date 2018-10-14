@@ -52,10 +52,17 @@
  }
  .comments-section {
    position: absolute;
-   bottom: 0;
-   height: 50%;
+   bottom: 40px;
+   height: 35%;
    width: 91%;
+   line-height: 1.5em;
    overflow: auto;
+ }
+
+ .comment-input {
+   position: absolute;
+   bottom:0;
+   width: 100%;
  }
  #comment_body {
    width: 50%;
@@ -197,6 +204,7 @@
  	min-height: 360px;
  	border-radius: 5px;
  	padding: 2em 8%;
+  line-height: 2.5em;
  }
 
  .recipe_image {
