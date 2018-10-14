@@ -8,6 +8,14 @@ class CommentsController < ApplicationController
     @comment.save
   end
 
+  def index
+    if params[:recipe_id]
+      @recipe = Recipe.find_by(id: params[:recipe_id])
+      @comments = @recipe.comments
+      render :index
+    end
+  end
+
   private
 
   def comment_params
