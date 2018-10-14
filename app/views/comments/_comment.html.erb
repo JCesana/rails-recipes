@@ -1,2 +1,7 @@
-[<%= comment.created_at.strftime("%I:%M %p") %>] <%= comment.user.email %>: <%= comment.body %>
+<p class="has-text-grey-dark has-text-weight-bold is-italic ">
+  "<%= comment.body %>"
+</p>
+<p class="is-size-7 has-text-grey-light">
+  -<%= comment.user.email %> (<%= comment.created_at.strftime("%I:%M %p") %>)
+</p>
 <br />
