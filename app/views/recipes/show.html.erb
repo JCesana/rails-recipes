@@ -11,7 +11,7 @@
       <div id="recipe_info">
         <h1><%= @recipe.title %></h1>
         <p class="description"><%= @recipe.description %></p>
-        <p class="is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= @recipe.user.email %></p>
+        <p class="is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_recipes_path(@recipe.user), class: "user-link" %></p>
 
         <% if current_user %>
           <br />
@@ -22,16 +22,18 @@
               <% end %>
 
               <% if @recipe.comments.length > 3 %>
-                <%= link_to "SEE MORE COMMENTS", recipe_comments_path(@recipe), class: "is-size-7 has-text-weight-bold" %>
+                <%= link_to "SEE MORE COMMENTS", recipe_comments_path(@recipe), class: "is-size-7 has-text-weight-bold red" %>
               <% end %>
             </div>
 
           </div>
-          <%= form_with model: [@recipe, @comment] do |f| %>
-            <%= f.text_field :body, class: "input" %>
-            <%= f.submit "Comment", class: "button is-light"%>
+          <div class="comment-input">
+            <%= form_with model: [@recipe, @comment] do |f| %>
+              <%= f.text_field :body, class: "input", style: "width: 70%" %>
+              <%= f.submit "Comment", class: "button is-light"%>
 
-          <% end %>
+            <% end %>
+          </div>
         <% end %>
 
       </div>
@@ -66,10 +68,14 @@
   <div class="columns">
     <div class="column">
       <%= link_to "Back", root_path, class: "button is-primary" %>
-      <% if current_user.admin || current_user == @recipe.user %>
-        <%= link_to "Edit", edit_recipe_path(@recipe), class: "button is-light" %>
-        <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" }, class: "button is-light" %>
+
+      <% if user_signed_in? %>
+        <% if current_user.admin || current_user == @recipe.user %>
+          <%= link_to "Edit", edit_recipe_path(@recipe), class: "button is-light" %>
+          <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" }, class: "button is-light" %>
+        <% end %>
       <% end %>
+
     </div>
   </div>
 
