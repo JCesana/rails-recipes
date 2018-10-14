@@ -60,6 +60,33 @@
  #comment_body {
    width: 50%;
  }
+ .red {
+   color: $red;
+ }
+ .user-link:link    {
+  /* Applies to all unvisited links */
+  text-decoration:  none;
+  font-weight:      bold;
+  color: $red;
+  }
+.user-link:visited {
+  /* Applies to all visited links */
+  text-decoration:  none;
+  font-weight:      bold;
+  color: $red;
+  }
+.user-link:hover   {
+  /* Applies to links under the pointer */
+  text-decoration:  underline;
+  font-weight:      bold;
+  color: $red;
+  }
+.user-link:active  {
+  /* Applies to activated links */
+  text-decoration:  underline;
+  font-weight:      bold;
+  color: $red;
+  }
  .recipe-title {
    padding: 0 10px;
  }
