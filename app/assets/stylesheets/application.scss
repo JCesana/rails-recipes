@@ -24,6 +24,8 @@
  	box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
  }
 
+
+
  $red: #DB6161;
 
  body {
@@ -48,7 +50,16 @@
    width: 150px;
    margin: 7px 3px;
  }
-
+ .comments-section {
+   position: absolute;
+   bottom: 0;
+   height: 50%;
+   width: 91%;
+   overflow: auto;
+ }
+ #comment_body {
+   width: 50%;
+ }
  .recipe-title {
    padding: 0 10px;
  }
@@ -168,6 +179,7 @@
  }
 
  #recipe_info {
+   position: relative;
  	h1 {
  		font-size: 36px;
  		font-weight: normal;
