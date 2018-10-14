@@ -1,6 +1,6 @@
 <% @users.each do |user| %>
   <p>
-    <%= link_to user.email, user_recipes_path(user), class: "is-size-4 user-link" %>
+    <%= link_to user.screenname, user_recipes_path(user), class: "is-size-4 user-link" %>
     <%= " - #{user.recipes.count}" %> <%=  "recipe".pluralize(user.recipes.count) %>
   </p>
 <% end  %>
