@@ -4,6 +4,17 @@
   <%= render 'recipes/filters' %>
 <% end  %>
 
+<% if @recipes.empty? && @user == current_user %>
+  <div class="level">
+    <div class="level-item">
+        <p class="title is-4">You have no recipes. <%= link_to "Create", new_user_recipe_path, class: "red" %> one now!</p>
+    </div>
+  </div>
+  <p>
+
+  </p>
+<% end %>
+
 <% @recipes.each_slice(3) do |recipes| %>
   <div class="columns">
     <% recipes.each do |recipe| %>
