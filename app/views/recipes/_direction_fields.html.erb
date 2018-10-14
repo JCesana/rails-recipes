@@ -1,6 +1,16 @@
 <div class="nested-fields">
   <div class="field">
-    <%= f.text_area :step, class: "textarea", placeholder: "Directions step goes here...", rows: 3 %>
+    <div class="columns">
+      <div class="column">
+        <%= link_to_remove_association f, class: 'button is-primary is-light', id: "x-icon" do %>
+          <i class="fas fa-times"></i>
+        <% end %>
+      </div>
+      <div class="column is-11">
+      <%= f.text_area :step, class: "textarea", placeholder: "Directions step goes here...", rows: 3 %>
+      </div>
+
+    </div>
   </div>
-  <%= link_to_remove_association "Remove Step", f, class: "form-button btn btn-default" %>
+
 </div>
