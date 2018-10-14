@@ -1,13 +1,13 @@
 <div class="nested-fields field">
   <div class="field has-addons">
-    <%= link_to_remove_association f, class: 'button is-info is-light' do %>
+    <%= link_to_remove_association f, class: 'button is-primary is-light', id: "x-icon" do %>
       <i class="fas fa-times"></i>
     <% end %>
 
     <div class="field">
-      <%= f.text_field :quantity, placeholder: "Qty" %>
-      <%= f.text_field :unit, placeholder: "Unit" %>
-      <%= f.text_field :ingredient_name, placeholder: "Ingredient" %>
+      <%= f.text_field :quantity, class: "input", placeholder: "Qty" %>
+      <%= f.text_field :unit, class: "input", placeholder: "Unit" %>
+      <%= f.text_field :ingredient_name, class: "input", placeholder: "Ingredient" %>
     </div>
 
 
