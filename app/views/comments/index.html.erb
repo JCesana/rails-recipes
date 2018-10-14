@@ -21,7 +21,7 @@
   <div class="columns">
     <div class="column">
       <div id="recipe_info">
-        <p class="title">Comments</p>
+        <p class="title"><%= @comments.count %> Comments</p>
 
         <% @comments.each do |comment| %>
         <p class="has-text-grey-dark has-text-weight-bold is-italic ">
