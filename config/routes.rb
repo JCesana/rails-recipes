@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'by_ingredient',          to: 'ingredients#show'
 
   resources :users, only: [:index, :show] do
-    resources :recipes, only: [:index]
+    resources :recipes, only: [:index, :new]
   end
 
   resources :recipes do
