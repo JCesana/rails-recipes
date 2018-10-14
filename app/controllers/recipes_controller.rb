@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @recipe.comments.order("created_at DESC")
+    @top_3_comments = @recipe.comments.order("created_at DESC").limit(3)
   end
 
   def new
