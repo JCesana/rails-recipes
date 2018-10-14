@@ -41,6 +41,7 @@
                 <%= render 'recipe_ingredient_fields', f: recipe_ingredient %>
               </div>
             <% end %>
+            <br />
             <%= link_to_add_association 'Add Ingredient', f, :recipe_ingredients, class: 'button is-light' %>
           </div>
         </div>
@@ -53,6 +54,7 @@
               <%= render 'direction_fields', f: direction %>
             <% end %>
             <div class="links">
+              <br />
               <%= link_to_add_association 'Add Step', f, :directions, class: 'button is-light' %>
             </div>
           </div>
