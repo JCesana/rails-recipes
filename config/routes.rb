@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'by_ingredient',       to: 'ingredients#show'
 
   resources :recipes do
-    resources :comments, only: [:show, :create]
+    resources :comments, only: [:index, :show, :create]
   end
 
   resources :ingredients, only: [:index, :show]
