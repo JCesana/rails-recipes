@@ -63,9 +63,14 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.destroy
-    flash.now[:primary] = "Successfully deleted recipe"
-    redirect_to root_path
+    if @recipe.destroy
+      flash.now[:primary] = "Successfully deleted recipe"
+      redirect_to root_path
+    else
+      flash.now[:danger] = @recipe.errors.full_messages
+      render 'show'
+    end
+
   end
 
   private
