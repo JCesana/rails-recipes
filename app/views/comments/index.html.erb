@@ -29,7 +29,7 @@
           "<%= comment.body %>"
         </p>
         <p class="is-size-7 has-text-grey-light">
-          -<%= comment.user.email %> (<%= comment.created_at.strftime("%I:%M %p") %>)
+          -<%= link_to comment.user.email, user_recipes_path(comment.user), class: "user-link" %> (<%= comment.created_at.strftime("%I:%M %p") %>)
         </p>
         <br />
         <% end %>
