@@ -1,4 +1,8 @@
-<%= render 'recipes/filters' %>
+<% if @user %>
+  <%= render 'recipes/user_title' %>
+<% else %>
+  <%= render 'recipes/filters' %>
+<% end  %>
 
 <% @recipes.each_slice(3) do |recipes| %>
   <div class="columns">
