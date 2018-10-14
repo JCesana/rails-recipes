@@ -4,7 +4,12 @@ class RecipesController < ApplicationController
   before_action :image_present?, only: [:create]
 
   def index
-    @recipes = Recipe.all.order("created_at DESC")
+    if params[:user_id]
+      @user = User.find_by_id(params[:user_id])
+      @recipes = @user.recipes
+    else
+      @recipes = Recipe.all.order("created_at DESC")
+    end
   end
 
   def active
