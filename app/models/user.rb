@@ -22,5 +22,12 @@ class User < ApplicationRecord
     end
   end
 
+  def screenname
+    if self.name.nil?
+      self.email.join('@')[0].capitalize
+    else
+      self.name 
+    end
+  end
 
 end
