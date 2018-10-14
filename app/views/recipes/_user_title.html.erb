@@ -1,7 +1,14 @@
 <div class="level">
   <div class="level-item">
     <p class="title is is-3">
-      <%= "#{@user.screenname}'s Recipes" %>
+
+      <% if @user == current_user %>
+        <% name = "Your" %>
+      <% else %>
+        <% name = "#{@user.screenname}'s" %>
+      <% end %>
+
+      <%= "#{name} Recipes" %>
     </p>
   </div>
 </div>
