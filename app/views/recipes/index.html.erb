@@ -14,9 +14,9 @@
           <h2><strong><%= link_to recipe.title, recipe %></strong></h2>
 
           <div class="recipe-stats">
-            <i class="far fa-comment"></i><%= recipe.comments.count %>
+            <i class="far fa-comment" title="Comments"></i><%= recipe.comments.count %>
             &nbsp;
-            <i class="fas fa-utensils"></i><%= recipe.ingredients.count %>
+            <i class="fas fa-utensils" title="Ingredients"></i><%= recipe.ingredients.count %>
           </div>
         </div>
       </div>
