@@ -49,6 +49,9 @@
    margin: 7px 3px;
  }
 
+ .recipe-title {
+   padding: 0 10px;
+ }
  .field_with_errors input, .field_with_errors textarea {
    border-color: #ff3860;
  }
@@ -98,12 +101,27 @@
  	background: white;
  	border-radius: 5px;
  	margin-bottom: 40px;
+  position: relative;
  	@include box-shadow;
  	.image_wrapper {
  		max-width: 100%;
  		border-radius: 5px 5px 0 0;
  		overflow: hidden;
  	}
+
+  .recipe-stats {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: 100%;
+    color: $red;
+    background: white;
+    opacity: 0.7;
+    padding: 3px 5px 3px 0;
+    letter-spacing: 1px;
+    width: 6em;
+    text-align: center;
+  }
  	img {
  		width: 100%;
  		-webkit-transition: all .3s ease-out;
@@ -115,7 +133,7 @@
  		}
  	}
  	h2 {
- 		padding: 15px 5%;
+ 		padding: 15px 0 15px 5%;
  		margin: 0;
  		font-size: 20px;
  		font-weight: normal;
@@ -124,6 +142,11 @@
  			color: $red;
  		}
  	}
+ }
+
+ #x-icon {
+    top: 7px;
+    right: 7px;
  }
 
  #recipe_top {
