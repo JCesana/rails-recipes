@@ -13,8 +13,7 @@
       <div id="recipe_info">
         <h1><%= @recipe.title %></h1>
         <p class="description"><%= @recipe.description %></p>
-        <p class="is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= @recipe.user.email %></p>
-
+        <p class="is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_recipes_path(@recipe.user), class: "user-link"  %></p>
       </div>
     </div>
   </div>
@@ -28,8 +27,8 @@
         <p class="has-text-grey-dark has-text-weight-bold is-italic ">
           "<%= comment.body %>"
         </p>
-        <p class="is-size-7 has-text-grey-light">
-          -<%= link_to comment.user.email, user_recipes_path(comment.user), class: "user-link" %> (<%= comment.created_at.strftime("%I:%M %p") %>)
+        <p class="is-size-7 has-text-grey-lighter">
+          -<%= link_to comment.user.screenname, user_recipes_path(comment.user), class: "user-link" %> (<%= comment.created_at.strftime("%I:%M %p %m/%e/%y") %>)
         </p>
         <br />
         <% end %>
