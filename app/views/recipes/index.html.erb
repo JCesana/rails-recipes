@@ -4,37 +4,37 @@
   <%= render 'recipes/filters' %>
 <% end  %>
 
-<% if @recipes.empty? && @user == current_user %>
-  <div class="level">
-    <div class="level-item">
-        <p class="title is-4">You have no recipes. <%= link_to "Create", new_user_recipe_path, class: "red" %> one now!</p>
+  <% if @user == current_user && @recipes.empty? %>
+    <div class="level">
+      <div class="level-item">
+          <p class="title is-4">You have no recipes. <%= link_to "Create", new_user_recipe_path, class: "red" %> one now!</p>
+      </div>
     </div>
-  </div>
-  <p>
+    <p>
 
-  </p>
-<% end %>
+    </p>
+  <% end %>
 
-<% @recipes.each_slice(3) do |recipes| %>
-  <div class="columns">
-    <% recipes.each do |recipe| %>
-      <div class="column is-one-third">
-        <div class="recipe">
-          <div class="image_wrapper">
-            <%= link_to recipe_path(recipe) do %>
-              <%= image_tag recipe.image %>
-            <% end %>
-          </div>
+  <% @recipes.each_slice(3) do |recipes| %>
+    <div class="columns">
+      <% recipes.each do |recipe| %>
+        <div class="column is-one-third">
+          <div class="recipe">
+            <div class="image_wrapper">
+              <%= link_to recipe_path(recipe) do %>
+                <%= image_tag recipe.image %>
+              <% end %>
+            </div>
 
-          <h2><strong><%= link_to recipe.title, recipe %></strong></h2>
+            <h2><strong><%= link_to recipe.title, recipe %></strong></h2>
 
-          <div class="recipe-stats">
-            <i class="far fa-comment" title="Comments"></i><%= recipe.comments.count %>
-            &nbsp;
-            <i class="fas fa-utensils" title="Ingredients"></i><%= recipe.ingredients.count %>
+            <div class="recipe-stats">
+              <i class="far fa-comment" title="Comments"></i><%= recipe.comments.count %>
+              &nbsp;
+              <i class="fas fa-utensils" title="Ingredients"></i><%= recipe.ingredients.count %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+      <% end %>
+    </div>
+  <% end %>
