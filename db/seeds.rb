@@ -187,7 +187,7 @@ smoothie.recipe_ingredients.new(quantity: "1", unit: "banana", ingredient_id: "1
 Ingredient.create(name: "strawberries") # id: 19
 smoothie.recipe_ingredients.new(quantity: "1", unit: "cup", ingredient_id: "19")
 
-smoothie.recipe_ingredients.new(quantity: "1", unit: "cup", ingredient_id: "18") # milk
+smoothie.recipe_ingredients.new(quantity: "1", unit: "cup", ingredient_id: "17") # milk
 
 Ingredient.create(name: "orange juice") # id: 20
 smoothie.recipe_ingredients.new(quantity: ".5", unit: "cup", ingredient_id: "20")
