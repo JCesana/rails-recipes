@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :image_present?, only: [:create]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def index
     if params[:user_id]
@@ -38,6 +39,9 @@ class RecipesController < ApplicationController
     @recipe.directions.build
   end
 
+  def edit
+  end
+
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
@@ -50,8 +54,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-  end
 
   def update
     if @recipe.update(recipe_params)
@@ -90,6 +92,13 @@ class RecipesController < ApplicationController
       flash[:danger] = "Please upload an image with your recipe."
       @recipe = Recipe.new(recipe_params) #repopulate fields
       render :new
+    end
+  end
+
+  def authorize_user
+    if !(current_user == @recipe.user || current_user.admin) # NOT AUTHORIZED TO EDIT, UPDATE, DESTROY
+      flash[:danger] = "You do not have permission to do this."
+      redirect_to root_path
     end
   end
 
