@@ -34,6 +34,15 @@ class RecipesController < ApplicationController
   end
 
   def new
+    if params[:user_id]
+      user = User.find_by_id(params[:user_id])
+
+      if user != current_user
+        flash[:danger] = "You do not have permission to do this."
+        redirect_to root_path
+      end
+    end
+
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build.build_ingredient
     @recipe.directions.build
