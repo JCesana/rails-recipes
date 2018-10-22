@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
-  get 'users/top_contributors'
   root 'recipes#index'
 
   get 'recipes/most_active',    to: 'recipes#active'
