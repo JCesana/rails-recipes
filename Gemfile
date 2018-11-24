@@ -44,6 +44,7 @@ gem 'devise', '~> 4.5'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'thin', '~> 1.6', '>= 1.6.4'
+gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
