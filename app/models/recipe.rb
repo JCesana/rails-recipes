@@ -13,10 +13,10 @@ class Recipe < ApplicationRecord
 
   scope :by_ingredient, -> (ingredient) { joins(:ingredients).where("ingredients.name = ?", ingredient) }
 
-  scope :active, -> { order("comments_count DESC")}
+  scope :active, -> { order("comments_count DESC") }
 
-  scope :most_ingredients, -> { order("recipe_ingredients_count DESC")}
+  scope :most_ingredients, -> { order("recipe_ingredients_count DESC") }
 
-  scope :least_ingredients, -> { order("recipe_ingredients_count ASC")}
+  scope :least_ingredients, -> { order("recipe_ingredients_count ASC") }
 
 end
