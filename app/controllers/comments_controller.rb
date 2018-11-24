@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_recipe
+  before_action :set_recipe, except: [:user_comments]
   before_action :authenticate_user!
 
   def create
@@ -13,6 +13,14 @@ class CommentsController < ApplicationController
       @recipe = Recipe.find_by(id: params[:recipe_id])
       @comments = @recipe.comments
       render :index
+    end
+  end
+
+  def user_comments
+    if params[:user_id]
+      @user = User.find_by_id(params[:user_id])
+
+      @comments = @user.comments.all
     end
   end
 

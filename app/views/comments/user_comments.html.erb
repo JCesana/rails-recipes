@@ -1,0 +1,7 @@
+<h1><%= @user.screenname %> Comments</h1>
+
+<% @comments.each do |comment| %>
+  <p>
+    <%= comment.body %>
+  </p>
+<% end %>

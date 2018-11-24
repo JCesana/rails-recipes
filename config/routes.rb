@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :recipes, only: [:index, :new]
+    get 'user_comments', to: 'comments#user_comments'
   end
 
   resources :recipes do
