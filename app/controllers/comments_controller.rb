@@ -5,7 +5,13 @@ class CommentsController < ApplicationController
   def create
     @comment = @recipe.comments.new(comment_params)
     @comment.user = current_user
-    @comment.save
+
+    if @comment.save
+      render json: @comment, status: 201
+    else
+      flash[:danger] = @comment.errors.full_messages
+      render json: { errors: @comment.errors.full_messages }, status: 400
+    end
   end
 
   def index
