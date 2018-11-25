@@ -11,11 +11,6 @@ class RecipesController < ApplicationController
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @recipes.to_json(only: [:id, :title, :description]) }
-    end
   end
 
   def active
@@ -36,6 +31,11 @@ class RecipesController < ApplicationController
   def show
     @comment = Comment.new
     @top_3_comments = @recipe.comments.order("created_at DESC").limit(3)
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @recipe.to_json(only: [:id, :title, :description]) }
+    end
   end
 
   def new
