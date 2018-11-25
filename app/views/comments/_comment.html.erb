@@ -1,7 +1,7 @@
-<p class="has-text-grey-dark has-text-weight-bold is-italic ">
+<div class="has-text-grey-dark has-text-weight-bold is-italic ">
   "<%= comment.body %>"
-</p>
-<p class="is-size-7 has-text-grey-lighter">
+</div>
+<div class="is-size-7 has-text-grey-lighter">
   -<%= link_to comment.user.screenname, user_recipes_path(comment.user), class: "user-link" %> (<%= comment.created_at.strftime("%I:%M %p %m/%e/%y") %>)
-</p>
-<br />
+</div>
+<hr>
