@@ -5,10 +5,8 @@ Rails.application.routes.draw do
   get 'recipes/most_active',    to: 'recipes#active'
   get 'recipes/hardest',        to: 'recipes#hardest'
   get 'recipes/easiest',        to: 'recipes#easiest'
-
-  get 'users/top_contributors',  to: 'users#top_contributors', as: 'top_contributors'
-
   get 'by_ingredient',          to: 'ingredients#show'
+  get 'users/top_contributors', to: 'users#top_contributors', as: 'top_contributors'
 
   resources :users, only: [:index, :show] do
     resources :recipes, only: [:index, :new]
