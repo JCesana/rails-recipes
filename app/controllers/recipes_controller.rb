@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy, :next, :previous]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :image_present?, only: [:create]
   before_action :authorize_user, only: [:edit, :update, :destroy]
@@ -11,6 +11,22 @@ class RecipesController < ApplicationController
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
+  end
+
+  def next
+    @recipe = @recipe.next
+    @comment = Comment.new
+    @comments = @recipe.comments.order("created_at ASC")
+
+    render action: :show
+  end
+
+  def previous
+    @recipe = @recipe.previous
+    @comment = Comment.new
+    @comments = @recipe.comments.order("created_at ASC")
+
+    render action: :show
   end
 
   def active
@@ -35,7 +51,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @recipe.to_json(only: [:id, :title, :description],
-                                                 include: [comments: { only: [:body, :user_id, :created_at] }], ) } 
+                                                 include: [comments: { only: [:body, :user_id, :created_at] }], ) }
     end
   end
 
