@@ -18,9 +18,9 @@ function appendDescription() {
 
       // adjust recipe stats back after description gets appended
       let stats = $(".stats-" + recipe.id);
-      stats.css("bottom", "152px");
+      stats.css("bottom", "130px");
     })
 
-
+    $(this).remove();
   })
 }
