@@ -56,12 +56,16 @@
           <%= render 'comments/comment', comment: comment %>
         <% end %>
 
-        <div>
-          <%= form_with model: [@recipe, @comment] do |f| %>
-            <%= f.text_field :body, class: "input", style: "width: 70%" %>
-            <%= f.submit "Comment", class: "button is-light"%>
+        <div id="newComment" class="has-text-grey-dark has-text-weight-bold is-italic"></div>
 
+        <div>
+
+          <%= form_for ([@recipe, @comment]) do |f| %>
+            <%= f.text_field :body, class: "input commentBox", style: "width: 70%" %>
+            <%= f.submit "Comment", class: "button is-light"%>
           <% end %>
+
+
         </div>
       <% end %>
 
