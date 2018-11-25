@@ -156,7 +156,7 @@
 
   .recipe-stats {
     position: absolute;
-    bottom: 60px;
+    bottom: 56px;
     right: 0;
     width: 100%;
     color: $red;
@@ -167,6 +167,15 @@
     width: 6em;
     text-align: center;
   }
+
+  div[id^="recipe-"] {
+    padding: 5px 15px 15px 15px;
+ 		margin: 0;
+
+ 		font-weight: bold;
+ 		line-height: 1.5;
+
+ 	}
  	img {
  		width: 100%;
     z-index: 0;
@@ -190,7 +199,7 @@
  		}
  	}
   h3 {
- 		padding: 15px 0 15px 5%;
+ 		padding: 15px 0 0 15px;
  		margin: 0;
  		font-size: 15px;
  		font-weight: normal;
