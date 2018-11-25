@@ -3,11 +3,12 @@
 
 $(function() {
   appendDescription();
+  nextRecipe();
+  previousRecipe();
 })
 
-
 function appendDescription() {
-  $(".seeDescription").one('click', function(e) {
+  $(".seeDescription").on('click', function(e) {
     let id = $(this).data("id");
 
     e.preventDefault();
@@ -22,5 +23,17 @@ function appendDescription() {
     })
 
     $(this).remove();
+  })
+}
+
+function nextRecipe() {
+  $(".js-next-recipe").on('click', function() {
+    alert("Next!");
+  })
+}
+
+function previousRecipe() {
+  $(".js-previous-recipe").on('click', function() {
+    alert("Previous!");
   })
 }
