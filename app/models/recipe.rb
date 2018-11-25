@@ -19,4 +19,19 @@ class Recipe < ApplicationRecord
 
   scope :least_ingredients, -> { order("recipe_ingredients_count ASC") }
 
+  def next
+    if next_recipe = self.class.order("title ASC").where("title > ?", title).first
+      next_recipe
+    else
+      self.class.order("title ASC").first
+    end
+  end
+
+  def previous
+    if previous_recipe = self.class.order("title DESC").where("title < ?", title).first 
+      previous_recipe
+    else
+      self.class.order("title DESC").first
+    end
+  end
 end
