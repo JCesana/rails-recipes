@@ -29,13 +29,13 @@
 
 
 
-            <div class="recipe-stats">
+            <div class="recipe-stats stats-<%= recipe.id %>">
               <i class="far fa-comment" title="Comments"></i><%= recipe.comments.count %>
               &nbsp;
               <i class="fas fa-utensils" title="Ingredients"></i><%= recipe.ingredients.count %>
             </div>
-            <h3><strong><a href="#" id="seeDescription">See Description...</a></strong></h3>
-            <div id="description"></div>
+            <h3><strong><a data-id="<%= recipe.id %>" class="seeDescription">See Description...</a></strong></h3>
+            <div id="recipe-<%= recipe.id %>-description"></div>
           </div>
         </div>
       <% end %>
