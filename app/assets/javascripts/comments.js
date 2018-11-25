@@ -40,7 +40,7 @@ Comment.prototype.renderComments = function() {
   "${ this.body }"
   </div>
   <div class="is-size-7 has-text-grey-lighter">
-  - <a class="user-link" href="/users/${this.user_id}/recipes">${this.user_name}</a> (${this.created_at})
+  - <a class="user-link" href="/users/${this.user_id}/recipes">${this.user_name}</a> (Now)
   </div>
   <br>
   `;
