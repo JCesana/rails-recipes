@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @recipe.comments.order("created_at DESC")
+    @comments = @recipe.comments.order("created_at ASC")
 
     respond_to do |format|
       format.html { render :show }
