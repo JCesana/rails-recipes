@@ -13,28 +13,7 @@
         <p class="description"><%= @recipe.description %></p>
         <p class="is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_recipes_path(@recipe.user), class: "user-link" %></p>
 
-        <% if current_user %>
-          <br />
-          <div class="comments-section">
-            <div id="comment_pane">
-              <% @top_3_comments.each do |comment| %>
-                <%= render 'comments/comment', comment: comment %>
-              <% end %>
 
-              <% if @recipe.comments.length > 3 %>
-                <%= link_to "SEE MORE COMMENTS", recipe_comments_path(@recipe), class: "is-size-7 has-text-weight-bold red" %>
-              <% end %>
-            </div>
-
-          </div>
-          <div class="comment-input">
-            <%= form_with model: [@recipe, @comment] do |f| %>
-              <%= f.text_field :body, class: "input", style: "width: 70%" %>
-              <%= f.submit "Comment", class: "button is-light"%>
-
-            <% end %>
-          </div>
-        <% end %>
 
       </div>
     </div>
@@ -60,8 +39,32 @@
               <%= direction.step %>
             </li>
           <% end %>
-        </ul>
+        </ol>
       </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="colums">
+    <div class="column is-half is-offset-one-quarter" id="comments-styling">
+      <p class="title has-text-centered">Comments</p>
+
+      <% if current_user %>
+        <br />
+        <% @comments.each do |comment| %>
+          <%= render 'comments/comment', comment: comment %>
+        <% end %>
+
+        <div>
+          <%= form_with model: [@recipe, @comment] do |f| %>
+            <%= f.text_field :body, class: "input", style: "width: 70%" %>
+            <%= f.submit "Comment", class: "button is-light"%>
+
+          <% end %>
+        </div>
+      <% end %>
+
     </div>
   </div>
 
