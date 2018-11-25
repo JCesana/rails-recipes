@@ -7,7 +7,20 @@ $(function() {
 
 
 function appendDescription() {
-  $("#seeDescription").on('click', function() {
-    alert("TEST: appending description!");
+  $(".seeDescription").one('click', function(e) {
+    let id = $(this).data("id");
+
+    e.preventDefault();
+
+    $.get('/recipes/' + id + '.json', function(recipe) {
+      const description = recipe.description;
+      $("#recipe-" + recipe.id + "-description").append(description);
+
+      // adjust recipe stats back after description gets appended
+      let stats = $(".stats-" + recipe.id);
+      stats.css("bottom", "152px");
+    })
+
+
   })
 }
