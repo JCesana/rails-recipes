@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @recipe.to_json(only: [:id, :title, :description],
-                                                 include: [comments: { only: [:body]}]) } 
+                                                 include: [comments: { only: [:body, :user_id, :created_at] }], ) } 
     end
   end
 
