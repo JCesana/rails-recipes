@@ -100,6 +100,9 @@
  .field_with_errors input, .field_with_errors textarea {
    border-color: #ff3860;
  }
+ .nav-arrow {
+   font-size: 4em;
+ }
  .by-ingredient {
    line-height: 3.75;
  }
@@ -128,7 +131,7 @@
  }
 
  .navbar {
- 	margin-bottom: 50px;
+ 	/* margin-bottom: 50px; */
  	@include box-shadow;
  	border: none;
  	.navbar-brand {
