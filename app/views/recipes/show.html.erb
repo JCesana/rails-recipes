@@ -1,4 +1,12 @@
 <div class="main_content">
+  <div class="columns is-mobile">
+    <div class="column is-2 is-offset-1">
+      <i class="js-previous-recipe fas fa-angle-left nav-arrow" data-id="<%= @recipe.id %>"></i>
+    </div>
+    <div class="column is-2 is-offset-7">
+      <i class="js-next-recipe fas fa-angle-right nav-arrow" data-id="<%= @recipe.id %>"></i>
+    </div>
+  </div>
 
   <div id="recipe_top" class="columns">
     <div class="column is-one-third">
