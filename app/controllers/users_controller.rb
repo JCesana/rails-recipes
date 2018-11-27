@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.all.order("email ASC")
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def top_contributors
     @users = User.top_contributors
   end
