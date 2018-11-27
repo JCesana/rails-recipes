@@ -27,13 +27,61 @@ function appendDescription() {
 }
 
 function nextRecipe() {
-  $(".js-next-recipe").on('click', function() {
-    alert("Next!");
+  $(".js-next-recipe").on('click', function(e) {
+    const id = $(".js-next-recipe").data("id")
+    $.get("/recipes/" + id + "/next", function(response) {
+      loadRecipe(response);
+    })
+    e.preventDefault();
   })
 }
 
 function previousRecipe() {
-  $(".js-previous-recipe").on('click', function() {
-    alert("Previous!");
+  $(".js-previous-recipe").on('click', function(e) {
+    const id = $(".js-previous-recipe").data("id")
+    $.get("/recipes/" + id + "/previous", function(response) {
+      loadRecipe(response);
+    })
+    e.preventDefault();
   })
+}
+
+function loadRecipe(data) {
+  // change URL to new route
+  history.pushState({}, "", "/recipes/" + data.id)
+
+  // reset id's of top arrow buttons
+  $(".js-previous-recipe").attr("data-id", data["id"]);
+  $(".js-next-recipe").attr("data-id", data["id"]);
+
+  // set title
+  let divTitle = $("#js-recipe-title")
+  divTitle.text(data.title);
+
+  // set description
+  let description = $(".description")
+  description.text(data.description);
+
+  // set 'Submitted By' link
+  let subbmitedBy = $(".js-subbmited-by")
+  subbmitedBy.html('Submitted by <a class="user-link" href="/users/' + data.user.id + '/recipes">' + data.user.name + '</a>');
+
+  // set ingredients
+  let ingredientsHtml = "";
+  let measurements = data.recipe_ingredients
+  let ingredients = data.ingredients;
+
+  ingredients.forEach(function(ingredient, i) {
+    ingredientsHtml += `<li>${measurements[i].quantity} ${measurements[i].unit} ${ingredient.name}</li>`;
+  })
+  $("#js-ingredients-list").html(ingredientsHtml);
+
+  // set directions
+  let directionsHtml = "";
+  let directions = data.directions
+
+  directions.forEach(function(direction) {
+    directionsHtml += `<li>${direction.step}</li>`;
+  })
+  $("#js-directions-list").html(directionsHtml);
 }
