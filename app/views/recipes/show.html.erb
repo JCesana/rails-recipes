@@ -1,10 +1,10 @@
 <div class="main_content">
   <div class="columns is-mobile">
     <div class="column is-2 is-offset-1">
-      <i class="js-previous-recipe fas fa-angle-left nav-arrow" data-id="<%= @recipe.id %>"></i>
+      <a href="#"><i class="js-previous-recipe fas fa-angle-left nav-arrow" data-id="<%= @recipe.id %>"></i></a>
     </div>
     <div class="column is-2 is-offset-7">
-      <i class="js-next-recipe fas fa-angle-right nav-arrow" data-id="<%= @recipe.id %>"></i>
+      <a href="#"><i class="js-next-recipe fas fa-angle-right nav-arrow" data-id="<%= @recipe.id %>"></i></a>
     </div>
   </div>
 
@@ -17,9 +17,9 @@
     </div>
     <div class="column is-two-thirds">
       <div id="recipe_info">
-        <h1><%= @recipe.title %></h1>
+        <h1 id="js-recipe-title"><%= @recipe.title %></h1>
         <p class="description"><%= @recipe.description %></p>
-        <p class="is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_recipes_path(@recipe.user), class: "user-link" %></p>
+        <p class="js-subbmited-by is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_recipes_path(@recipe.user), class: "user-link" %></p>
 
 
 
@@ -31,7 +31,7 @@
     <div class="column is-half">
       <div id="ingredients-styling">
         <p class="title">Ingredients</p>
-        <ul>
+        <ul id="js-ingredients-list">
           <% @recipe.recipe_ingredients.each do |ri| %>
             <li><%= ri.recipe_line_detail %></li>
           <% end %>
@@ -41,7 +41,7 @@
     <div class="column is-half">
       <div id="directions-styling">
         <p class="title">Directions</p>
-        <ol>
+        <ol id="js-directions-list">
           <% @recipe.directions.each do |direction| %>
             <li>
               <%= direction.step %>
