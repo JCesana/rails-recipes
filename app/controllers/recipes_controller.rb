@@ -16,7 +16,6 @@ class RecipesController < ApplicationController
   def next
     @next_recipe = @recipe.next
     @comment = Comment.new
-    # @comments = @next_recipe.comments.order("created_at ASC")
 
     render json: @next_recipe
   end
@@ -24,8 +23,7 @@ class RecipesController < ApplicationController
   def previous
     @previous_recipe = @recipe.previous
     @comment = Comment.new
-    # @comments = @recipe.comments.order("created_at ASC")
-
+    
     render json: @previous_recipe
   end
 
