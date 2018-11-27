@@ -2,6 +2,6 @@
   "<%= comment.body %>"
 </div>
 <div class="is-size-7 has-text-grey-lighter">
-  -<%= link_to comment.user.screenname, user_recipes_path(comment.user), class: "user-link" %> (<%= comment.created_at.strftime("%I:%M %p %m/%e/%y") %>)
+  -<%= link_to comment.user.screenname, user_path(comment.user), class: "user-link" %> (<%= comment.created_at.strftime("%I:%M %p %m/%e/%y") %>)
 </div>
 <hr>
