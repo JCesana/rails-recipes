@@ -171,6 +171,20 @@
     text-align: center;
   }
 
+  .recipe-stats-rendered {
+    position: absolute;
+    bottom: 115px;
+    right: 0;
+    width: 100%;
+    color: $red;
+    background: white;
+    opacity: 0.7;
+    padding: 3px 5px 3px 0;
+    letter-spacing: 1px;
+    width: 6em;
+    text-align: center;
+  }
+
   div[id^="recipe-"] {
     padding: 5px 15px 15px 15px;
  		margin: 0;
