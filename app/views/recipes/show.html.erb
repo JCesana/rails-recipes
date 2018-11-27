@@ -19,7 +19,7 @@
       <div id="recipe_info">
         <h1 id="js-recipe-title"><%= @recipe.title %></h1>
         <p class="description"><%= @recipe.description %></p>
-        <p class="js-subbmited-by is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_recipes_path(@recipe.user), class: "user-link" %></p>
+        <p class="js-subbmited-by is-size-7 has-text-weight-bold has-text-grey is-italic">Submitted by <%= link_to @recipe.user.screenname, user_path(@recipe.user), class: "user-link" %></p>
 
 
 
