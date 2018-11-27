@@ -5,6 +5,7 @@ $(function() {
   appendDescription();
   nextRecipe();
   previousRecipe();
+  processUserRecipes();
 })
 
 function appendDescription() {
@@ -101,20 +102,109 @@ function loadRecipe(data) {
   })
 
   $(".js-comments").html(commentsHtml);
+}
 
-  // add new comment form
-  // let formHtml = "";
-  //
-  // formHtml += `
-  //   <div>
-  //     <form class="new_comment" action="/recipes/${data.id}/comments" accept-charset="UTF-8" method="post">
-  //       <input name="utf8" type="hidden" value="✓">
-  //       <input type="hidden" name="authenticity_token" value="d6QwteOllhEFT1T9BW1MiQ4pDhoSHJz4seUwjAM0t856FuISPf5IkcWQnusCyDBV+zhM9aSQMz/GMp+K3/XKMA==">
-  //       <input class="input commentBox" style="width: 70%" type="text" name="comment[body]" id="comment_body">
-  //       <input type="submit" name="commit" value="Comment" class="button is-light" data-disable-with="Comment">
-  //     </form>
-  //  </div>`
-  //
-  //
-  //  $(".js-comments").append(formHtml);
+function processUserRecipes() {
+  $(".js-view-recipes").one('click', function(e) {
+    const userId = $(".js-view-recipes").attr("data-user-id");
+
+    $.get('/users/' + userId + '/recipes.json', function(response) {
+      let recipes = response;
+      appendRecipeIndex(response);
+    })
+
+    e.preventDefault();
+  })
+}
+
+function appendRecipeIndex(recipes) {
+  let indexHtml = "";
+
+  // itterate recipes json by 3 to accomidate 3 columns
+  for (var i = 0; i < (recipes.length + 3); i += 3) {
+    let recipe1;
+    let recipe2;
+    let recipe3;
+    let recipe4;
+
+    if (recipes[i]) {
+      recipe1 = recipes[i];
+    }
+
+    if (recipes[i + 1]) {
+      recipe2 = recipes[i + 1];
+    }
+    if (recipes[i + 2]) {
+      recipe3 = recipes[i + 2];
+    }
+
+    indexHtml += `<div class="columns">`
+
+    if (recipe1) {
+      indexHtml += `
+      <div class="column is-one-third">
+        <div class="recipe">
+          <div class="image_wrapper">
+            <h2><strong><a href="/recipes/${recipe1.id}">${recipe1.title}</a></strong></h2>
+            <a href="/recipes/${recipe1.id}">
+              <img src="${recipe1.image_url}">
+            </a>
+          </div>
+          <div class="recipe-stats-rendered">
+            <i class="far fa-comment" title="Comments"></i>3
+            &nbsp;
+            <i class="fas fa-utensils" title="Ingredients"></i>5
+          </div>
+          <div id="recipe-${recipe1.id}-description">${recipe1.description}</div>
+        </div>
+      </div>
+      `
+    }
+
+    if (recipe2) {
+      indexHtml += `
+      <div class="column is-one-third">
+        <div class="recipe">
+          <div class="image_wrapper">
+            <h2><strong><a href="/recipes/${recipe2.id}">${recipe2.title}</a></strong></h2>
+            <a href="/recipes/${recipe2.id}">
+              <img src="${recipe2.image_url}">
+            </a>
+          </div>
+          <div class="recipe-stats-rendered">
+            <i class="far fa-comment" title="Comments"></i>4
+            &nbsp;
+            <i class="fas fa-utensils" title="Ingredients"></i>6
+          </div>
+          <div id="recipe-${recipe2.id}-description">${recipe2.description}</div>
+        </div>
+      </div>
+      `
+    }
+
+    if (recipe3) {
+      indexHtml += `
+      <div class="column is-one-third">
+        <div class="recipe">
+          <div class="image_wrapper">
+            <h2><strong><a href="/recipes/${recipe3.id}">${recipe3.title}</a></strong></h2>
+            <a href="/recipes/${recipe3.id}">
+              <img src="${recipe3.image_url}">
+            </a>
+          </div>
+          <div class="recipe-stats-rendered">
+            <i class="far fa-comment" title="Comments"></i>5
+            &nbsp;
+            <i class="fas fa-utensils" title="Ingredients"></i>5
+          </div>
+          <div id="recipe-${recipe3.id}-description">${recipe3.description}</div>
+        </div>
+      </div>
+      `
+    }
+
+    indexHtml += `</div>`
+  }
+
+  $("#js-recipes").html(indexHtml);
 }
