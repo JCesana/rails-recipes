@@ -14,19 +14,19 @@ class RecipesController < ApplicationController
   end
 
   def next
-    @recipe = @recipe.next
+    @next_recipe = @recipe.next
     @comment = Comment.new
-    @comments = @recipe.comments.order("created_at ASC")
+    # @comments = @next_recipe.comments.order("created_at ASC")
 
-    render action: :show
+    render json: @next_recipe
   end
 
   def previous
-    @recipe = @recipe.previous
+    @previous_recipe = @recipe.previous
     @comment = Comment.new
-    @comments = @recipe.comments.order("created_at ASC")
+    # @comments = @recipe.comments.order("created_at ASC")
 
-    render action: :show
+    render json: @previous_recipe
   end
 
   def active
