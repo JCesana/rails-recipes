@@ -8,6 +8,11 @@ class RecipesController < ApplicationController
     if params[:user_id]
       @user = User.find_by_id(params[:user_id])
       @recipes = @user.recipes
+
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @recipes }
+      end
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
@@ -23,7 +28,7 @@ class RecipesController < ApplicationController
   def previous
     @previous_recipe = @recipe.previous
     @comment = Comment.new
-    
+
     render json: @previous_recipe
   end
 
@@ -48,8 +53,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @recipe.to_json(only: [:id, :title, :description],
-                                                 include: [comments: { only: [:body, :user_id, :created_at] }], ) }
+      format.json { render json: @recipe.to_json(only: [:id, :description] ) } # to append description on index
     end
   end
 
