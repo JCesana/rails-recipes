@@ -66,9 +66,12 @@ function loadRecipe(data) {
   let subbmitedBy = $(".js-subbmited-by")
   subbmitedBy.html('Submitted by <a class="user-link" href="/users/' + data.user.id + '/recipes">' + data.user.name + '</a>');
 
+  // set image
+  $(".recipe_image").html(`<img src='${data.image_url}'>`);
+
   // set ingredients
   let ingredientsHtml = "";
-  let measurements = data.recipe_ingredients
+  let measurements = data.recipe_ingredients;
   let ingredients = data.ingredients;
 
   ingredients.forEach(function(ingredient, i) {
@@ -78,10 +81,23 @@ function loadRecipe(data) {
 
   // set directions
   let directionsHtml = "";
-  let directions = data.directions
+  let directions = data.directions;
 
   directions.forEach(function(direction) {
     directionsHtml += `<li>${direction.step}</li>`;
   })
   $("#js-directions-list").html(directionsHtml);
+
+  // set comments
+  let comments = data.comments;
+  let commentsHtml = "";
+
+  commentsHtml += `<p class="title has-text-centered">Comments</p><br>`;
+
+  comments.forEach(function(comment) {
+    commentsHtml += `<div class="has-text-grey-dark has-text-weight-bold is-italic ">${comment.body}</div>`
+    commentsHtml += `<div class="is-size-7 has-text-grey-lighter">-<a class="user-link" href="/users/${comment.user.id}/recipes">${comment.user.name}</a> (${comment.created_at})</div><hr>`
+  })
+
+  $(".js-comments").html(commentsHtml);
 }
