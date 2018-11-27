@@ -6,7 +6,7 @@ $(function() {
 })
 
 function appendComment() {
-  $("#new_comment").submit(function(e) {
+  $(".new_comment").submit(function(e) {
     $.ajax({
       method: "POST",
       url: this.action,
@@ -19,7 +19,6 @@ function appendComment() {
 
       }
     })
-
 
     e.preventDefault();
   })
@@ -45,5 +44,5 @@ Comment.prototype.renderComments = function() {
   <br>
   `;
 
-  $("div#newComment").append(html);
+  $(".newComment").append(html);
 }
