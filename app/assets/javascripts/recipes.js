@@ -28,7 +28,7 @@ function appendDescription() {
 
 function nextRecipe() {
   $(".js-next-recipe").on('click', function(e) {
-    const id = $(".js-next-recipe").data("id")
+    const id = $(".js-next-recipe").attr("data-id")
     $.get("/recipes/" + id + "/next", function(response) {
       loadRecipe(response);
     })
@@ -38,7 +38,8 @@ function nextRecipe() {
 
 function previousRecipe() {
   $(".js-previous-recipe").on('click', function(e) {
-    const id = $(".js-previous-recipe").data("id")
+    const id = $(".js-previous-recipe").attr("data-id")
+
     $.get("/recipes/" + id + "/previous", function(response) {
       loadRecipe(response);
     })
