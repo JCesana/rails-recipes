@@ -5,23 +5,27 @@
       <% if @user == current_user %>
         <% name = "Your" %>
       <% else %>
-        <% name = @user.screenname %>
+        <% name = "#{@user.screenname}'s" %>
       <% end %>
 
-      <%= "#{name}'s Profile" %>
+      <%= "#{name} Profile" %>
     </p>
   </div>
 </div>
 
 <div class="level top-section">
   <div class="level-item">
-    <div>
-      <p><strong><%= "#{name}" %> has &nbsp; </strong></p>
-    </div>
-    <br>
-    <div>
-      <p><a class="js-view-recipes button is-primary" data-user-id="<%= @user.id %>" href="#"><%= @user.recipes.count %> <%= "Recipe".pluralize(@user.recipes.count) %></a></p>
-    </div>
+      <p class="title is-5">
+
+        <% if @user == current_user %>
+          <% heading = "You have" %>
+        <% else %>
+          <% heading = "#{@user.screenname} has " %>
+        <% end %>
+
+        <strong><%= heading %></strong>
+        <a class="js-view-recipes red" data-user-id="<%= @user.id %>" href="#"><%= @user.recipes.count %> <%= "Recipe".pluralize(@user.recipes.count) %></a>
+      </p>
   </div>
 </div>
 
