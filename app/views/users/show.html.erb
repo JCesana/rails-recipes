@@ -1,0 +1,28 @@
+<div class="level">
+  <div class="level-item">
+    <p class="title is is-3">
+
+      <% if @user == current_user %>
+        <% name = "Your" %>
+      <% else %>
+        <% name = @user.screenname %>
+      <% end %>
+
+      <%= "#{name}'s Profile" %>
+    </p>
+  </div>
+</div>
+
+<div class="level filter-section">
+  <div class="level-item">
+    <div>
+      <p><strong><%= "#{name}" %> has &nbsp; </strong></p>
+    </div>
+    <br>
+    <div>
+      <p><a class="js-view-recipes button is-primary" data-user-id="<%= @user.id %>" href="#"><%= @user.recipes.count %> <%= "Recipe".pluralize(@user.recipes.count) %></a></p>
+    </div>
+  </div>
+</div>
+
+<div id="js-recipes"></div>
