@@ -103,18 +103,18 @@ function loadRecipe(data) {
   $(".js-comments").html(commentsHtml);
 
   // add new comment form
-  let formHtml = "";
-
-  formHtml += `
-    <div>
-      <form class="new_comment" id="new_comment" action="/recipes/${data.id}/comments" accept-charset="UTF-8" method="post">
-        <input name="utf8" type="hidden" value="✓">
-        <input type="hidden" name="authenticity_token" value="d6QwteOllhEFT1T9BW1MiQ4pDhoSHJz4seUwjAM0t856FuISPf5IkcWQnusCyDBV+zhM9aSQMz/GMp+K3/XKMA==">
-        <input class="input commentBox" style="width: 70%" type="text" name="comment[body]" id="comment_body">
-        <input type="submit" name="commit" value="Comment" class="button is-light" data-disable-with="Comment">
-      </form>
-   </div>`
-
-
-   $(".js-comments").append(formHtml);
+  // let formHtml = "";
+  //
+  // formHtml += `
+  //   <div>
+  //     <form class="new_comment" action="/recipes/${data.id}/comments" accept-charset="UTF-8" method="post">
+  //       <input name="utf8" type="hidden" value="✓">
+  //       <input type="hidden" name="authenticity_token" value="d6QwteOllhEFT1T9BW1MiQ4pDhoSHJz4seUwjAM0t856FuISPf5IkcWQnusCyDBV+zhM9aSQMz/GMp+K3/XKMA==">
+  //       <input class="input commentBox" style="width: 70%" type="text" name="comment[body]" id="comment_body">
+  //       <input type="submit" name="commit" value="Comment" class="button is-light" data-disable-with="Comment">
+  //     </form>
+  //  </div>`
+  //
+  //
+  //  $(".js-comments").append(formHtml);
 }
