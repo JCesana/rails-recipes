@@ -106,18 +106,18 @@ function loadRecipe(data) {
   // set or delete 'Edit' and 'Delete' buttons, depending if user is owner
   let buttonsHtml = "";
 
-  if (data.user.id === data.user.current_user.id) {
+  // remove 'Edit' and 'Delete' if not signed in, or not owner
+  if (data.user.current_user == null || data.user.id !== data.user.current_user.id) {
+    $(".js-edit-button").remove();
+    $(".js-delete-button").remove();
+  } else {
     buttonsHtml += `
       <a class="js-edit-button button is-light" href="/recipes/${data.id}/edit">Edit</a>
       <a data-confirm="Are you sure?" class="js-delete-button button is-light" rel="nofollow" data-method="delete" href="/recipes/${data.id}">Delete</a>
-      `
-
-    $(".js-admin-buttons").append(buttonsHtml)
-  } else {
-    $(".js-edit-button").remove();
-    $(".js-delete-button").remove();
+      `;
   }
 
+  $(".js-admin-buttons").append(buttonsHtml)
 }
 
 function processUserRecipes() {
