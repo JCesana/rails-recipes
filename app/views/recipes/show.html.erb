@@ -82,15 +82,18 @@
 
   <div class="columns">
     <div class="column">
+      <div class="js-admin-buttons">
+
       <%= link_to "Back", root_path, class: "button is-primary" %>
 
       <% if user_signed_in? %>
         <% if current_user.admin || current_user == @recipe.user %>
-          <%= link_to "Edit", edit_recipe_path(@recipe), class: "button is-light" %>
-          <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" }, class: "button is-light" %>
+          <%= link_to "Edit", edit_recipe_path(@recipe), class: "js-edit-button button is-light" %>
+          <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" }, class: "js-delete-button button is-light" %>
         <% end %>
       <% end %>
-
+      
+      </div>
     </div>
   </div>
 
