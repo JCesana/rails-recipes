@@ -151,9 +151,9 @@ function appendRecipeIndex(recipes) {
             </a>
           </div>
           <div class="recipe-stats-rendered">
-            <i class="far fa-comment" title="Comments"></i>3
+            <i class="far fa-comment" title="Comments"></i>${recipe1.comments.length}
             &nbsp;
-            <i class="fas fa-utensils" title="Ingredients"></i>5
+            <i class="fas fa-utensils" title="Ingredients"></i>${recipe1.ingredients.length}
           </div>
           <div id="recipe-${recipe1.id}-description">${recipe1.description}</div>
         </div>
@@ -172,9 +172,9 @@ function appendRecipeIndex(recipes) {
             </a>
           </div>
           <div class="recipe-stats-rendered">
-            <i class="far fa-comment" title="Comments"></i>4
+            <i class="far fa-comment" title="Comments"></i>${recipe2.comments.length}
             &nbsp;
-            <i class="fas fa-utensils" title="Ingredients"></i>6
+            <i class="fas fa-utensils" title="Ingredients"></i>${recipe2.ingredients.length}
           </div>
           <div id="recipe-${recipe2.id}-description">${recipe2.description}</div>
         </div>
@@ -193,9 +193,9 @@ function appendRecipeIndex(recipes) {
             </a>
           </div>
           <div class="recipe-stats-rendered">
-            <i class="far fa-comment" title="Comments"></i>5
+            <i class="far fa-comment" title="Comments"></i>${recipe3.comments.length}
             &nbsp;
-            <i class="fas fa-utensils" title="Ingredients"></i>5
+            <i class="fas fa-utensils" title="Ingredients"></i>${recipe3.ingredients.length}
           </div>
           <div id="recipe-${recipe3.id}-description">${recipe3.description}</div>
         </div>
@@ -208,3 +208,5 @@ function appendRecipeIndex(recipes) {
 
   $("#js-recipes").html(indexHtml);
 }
+
+// testing
