@@ -4,7 +4,9 @@
 
 ## Overview
 
-This recipes content management app was created with Ruby on Rails.
+Rails Recipes is a web application created with a Ruby on Rails backend with added dynamic features using JavaScript, AJAX requests, and JSON API.
+
+Users can create an account, browse recipes created by members, and create and share their own recipes.
 
 # Requirements
 
