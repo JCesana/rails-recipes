@@ -30,8 +30,8 @@ function appendDescription() {
 function nextRecipe() {
   $(".js-next-recipe").on('click', function(e) {
     const id = $(".js-next-recipe").attr("data-id")
-    $.get("/recipes/" + id + "/next", function(response) {
-      loadRecipe(response);
+    $.get("/recipes/" + id + "/next", function(recipe) {
+      loadRecipe(recipe);
     })
     e.preventDefault();
   })
@@ -41,8 +41,8 @@ function previousRecipe() {
   $(".js-previous-recipe").on('click', function(e) {
     const id = $(".js-previous-recipe").attr("data-id")
 
-    $.get("/recipes/" + id + "/previous", function(response) {
-      loadRecipe(response);
+    $.get("/recipes/" + id + "/previous", function(recipe) {
+      loadRecipe(recipe);
     })
     e.preventDefault();
   })
@@ -102,6 +102,22 @@ function loadRecipe(data) {
   })
 
   $(".js-comments").html(commentsHtml);
+
+  // set or delete 'Edit' and 'Delete' buttons, depending if user is owner
+  let buttonsHtml = "";
+
+  if (data.user.id === data.user.current_user.id) {
+    buttonsHtml += `
+      <a class="js-edit-button button is-light" href="/recipes/${data.id}/edit">Edit</a>
+      <a data-confirm="Are you sure?" class="js-delete-button button is-light" rel="nofollow" data-method="delete" href="/recipes/${data.id}">Delete</a>
+      `
+
+    $(".js-admin-buttons").append(buttonsHtml)
+  } else {
+    $(".js-edit-button").remove();
+    $(".js-delete-button").remove();
+  }
+
 }
 
 function processUserRecipes() {
