@@ -141,7 +141,6 @@ function appendRecipeIndex(recipes) {
     let recipe1;
     let recipe2;
     let recipe3;
-    let recipe4;
 
     if (recipes[i]) {
       recipe1 = recipes[i];
