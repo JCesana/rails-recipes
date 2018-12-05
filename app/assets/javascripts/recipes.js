@@ -136,7 +136,7 @@ function processUserRecipes() {
 function appendRecipeIndex(recipes) {
   let indexHtml = "";
 
-  // itterate recipes json by 3 to accomidate 3 columns
+  // itterate recipes json by 3 to accommodate 3 columns
   for (var i = 0; i < (recipes.length + 3); i += 3) {
     let recipe1;
     let recipe2;
